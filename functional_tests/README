@@ -1,0 +1,2 @@
+## Running tests agains stage server
+python manage.py test functional_tests --liveserver=stage:8000

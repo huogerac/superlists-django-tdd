@@ -1,7 +1,7 @@
 # Django settings for superlists project.
 
 from os import path
-PROJECT_DIR = path.dirname(path.realpath(__file__))
+PROJECT_ROOT = path.join(path.dirname(__file__), '..')
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
@@ -15,7 +15,7 @@ MANAGERS = ADMINS
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3', # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
-        'NAME': 'database.sqlite',                      # Or path to database file if using sqlite3.
+        'NAME': path.abspath(path.join(PROJECT_ROOT, '../database/database.sqlite')),
         'USER': '',                      # Not used with sqlite3.
         'PASSWORD': '',                  # Not used with sqlite3.
         'HOST': '',                      # Set to empty string for localhost. Not used with sqlite3.
@@ -63,7 +63,7 @@ MEDIA_URL = ''
 STATIC_ROOT = 'static'
 
 # This next setting is needed when DEBUG=False
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['localhost', 'stage']
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
@@ -74,7 +74,7 @@ STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    path.join(PROJECT_DIR, '../..', 'static'),
+    path.abspath(path.join(PROJECT_ROOT, '../static')),
 )
 
 # List of finder classes that know how to find static files in
